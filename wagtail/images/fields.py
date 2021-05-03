@@ -3,12 +3,12 @@ import os
 import willow
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.forms.fields import ImageField
+from django.forms.fields import FileField, ImageField
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import gettext_lazy as _
 
-ALLOWED_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'webp']
-SUPPORTED_FORMATS_TEXT = _("GIF, JPEG, PNG, WEBP")
+ALLOWED_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'webp', 'mp4']
+SUPPORTED_FORMATS_TEXT = _("GIF, JPEG, PNG, WEBP, MP4")
 
 
 class WagtailImageField(ImageField):
@@ -106,6 +106,10 @@ class WagtailImageField(ImageField):
             ), code='file_too_many_pixels')
 
     def to_python(self, data):
+        extension = os.path.splitext(str(data))[1].lower()[1:]
+        if extension == 'mp4':
+            return self.to_python_mp4(data)
+
         f = super().to_python(data)
 
         if f is not None:
@@ -114,3 +118,15 @@ class WagtailImageField(ImageField):
             self.check_image_pixel_size(f)
 
         return f
+
+    def to_python_mp4(self, data):
+        f = super(FileField, self).to_python(data)
+        f.content_type = 'video/mp4'
+        return f
+
+    def run_validators(self, value):
+        extension = os.path.splitext(str(value))[1].lower()[1:]
+        # We don't run any validators for MP4 files.
+        if extension == 'mp4':
+            return
+        super().run_validators(value)
