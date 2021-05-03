@@ -372,8 +372,8 @@ class Image(AbstractImage):
     )
 
     class Meta:
-        verbose_name = _('image')
-        verbose_name_plural = _('images')
+        verbose_name = _('Media')
+        verbose_name_plural = _('Media')
 
 
 class Filter:

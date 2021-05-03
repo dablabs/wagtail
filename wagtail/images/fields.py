@@ -8,7 +8,7 @@ from django.template.defaultfilters import filesizeformat
 from django.utils.translation import gettext_lazy as _
 
 ALLOWED_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'webp', 'mp4']
-SUPPORTED_FORMATS_TEXT = _("GIF, JPEG, PNG, WEBP, MP4")
+SUPPORTED_FORMATS_TEXT = _("GIF, JPEG, PNG, WEBP, MP4. Inline video will autoplay without sound and loop. MP4 files only")
 
 
 class WagtailImageField(ImageField):
