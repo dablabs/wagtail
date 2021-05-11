@@ -3,7 +3,7 @@
 {% load wagtailimages_tags %}
 {% load i18n %}
 
-{% block titletag %}{% trans "Images" %}{% endblock %}
+{% block titletag %}{% trans "Media" %}{% endblock %}
 {% block extra_js %}
     {{ block.super }}
     <script>
@@ -22,10 +22,10 @@
 {% endblock %}
 
 {% block content %}
-    {% trans "Images" as im_str %}
+    {% trans "Media" as im_str %}
 
     {% if user_can_add %}
-        {% trans "Add an image" as add_img_str %}
+        {% trans "Add media" as add_img_str %}
         {% url "wagtailimages:add_multiple" as add_link %}
         {% include "wagtailadmin/shared/header.html" with title=im_str action_url=add_link icon="image" action_text=add_img_str search_url="wagtailimages:index" %}
     {% else %}

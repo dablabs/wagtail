@@ -41,7 +41,7 @@ class ImagesMenuItem(MenuItem):
 @hooks.register('register_admin_menu_item')
 def register_images_menu_item():
     return ImagesMenuItem(
-        _('Images'), reverse('wagtailimages:index'),
+        _('Media'), reverse('wagtailimages:index'),
         name='images', icon_name='image', order=300
     )
 

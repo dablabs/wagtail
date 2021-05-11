@@ -42,13 +42,13 @@ def index(request):
     # Search
     query_string = None
     if 'q' in request.GET:
-        form = SearchForm(request.GET, placeholder=_("Search images"))
+        form = SearchForm(request.GET, placeholder=_("Search media"))
         if form.is_valid():
             query_string = form.cleaned_data['q']
 
             images = images.search(query_string)
     else:
-        form = SearchForm(placeholder=_("Search images"))
+        form = SearchForm(placeholder=_("Search media"))
 
     # Filter by collection
     current_collection = None
@@ -136,12 +136,12 @@ def edit(request, image_id):
             # Reindex the image to make sure all tags are indexed
             search_index.insert_or_update_object(image)
 
-            messages.success(request, _("Image '{0}' updated.").format(image.title), buttons=[
+            messages.success(request, _("Media '{0}' updated.").format(image.title), buttons=[
                 messages.button(reverse('wagtailimages:edit', args=(image.id,)), _('Edit again'))
             ])
             return redirect('wagtailimages:index')
         else:
-            messages.error(request, _("The image could not be saved due to errors."))
+            messages.error(request, _("The media could not be saved due to errors."))
     else:
         form = ImageForm(instance=image, user=request.user)
 
@@ -256,7 +256,7 @@ def delete(request, image_id):
 
     if request.method == 'POST':
         image.delete()
-        messages.success(request, _("Image '{0}' deleted.").format(image.title))
+        messages.success(request, _("Media '{0}' deleted.").format(image.title))
         return redirect('wagtailimages:index')
 
     return TemplateResponse(request, "wagtailimages/images/confirm_delete.html", {
@@ -286,7 +286,7 @@ def add(request):
             # Reindex the image to make sure all tags are indexed
             search_index.insert_or_update_object(image)
 
-            messages.success(request, _("Image '{0}' added.").format(image.title), buttons=[
+            messages.success(request, _("Media '{0}' added.").format(image.title), buttons=[
                 messages.button(reverse('wagtailimages:edit', args=(image.id,)), _('Edit'))
             ])
             return redirect('wagtailimages:index')

@@ -1,7 +1,7 @@
 {% extends "wagtailadmin/base.html" %}
 {% load wagtailimages_tags %}
 {% load i18n %}
-{% block titletag %}{% trans "Add an image" %}{% endblock %}
+{% block titletag %}{% trans "Add media" %}{% endblock %}
 
 {% block extra_js %}
     {{ block.super }}
@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block content %}
-    {% trans "Add image" as add_str %}
+    {% trans "Add media" as add_str %}
     {% include "wagtailadmin/shared/header.html" with title=add_str icon="image" %}
 
     <div class="nice-padding">

@@ -12,7 +12,7 @@
 
         {% search_other %}
     {% else %}
-        <h2>{% trans "Latest images" %}</h2>
+        <h2>{% trans "Latest media" %}</h2>
     {% endif %}
 
     <ul class="listing horiz images">
@@ -36,15 +36,15 @@
 
 {% else %}
     {% if is_searching %}
-        <h2 role="alert">{% blocktrans %}Sorry, no images match "<em>{{ query_string }}</em>"{% endblocktrans %}</h2>
+        <h2 role="alert">{% blocktrans %}Sorry, no media match "<em>{{ query_string }}</em>"{% endblocktrans %}</h2>
 
         {% search_other %}
     {% else %}
         {% url 'wagtailimages:add_multiple' as wagtailimages_add_image_url %}
         {% if current_collection %}
-            <p>{% blocktrans %}You haven't uploaded any images in this collection. Why not <a href="{{ wagtailimages_add_image_url }}">upload one now</a>?{% endblocktrans %}</p>
+            <p>{% blocktrans %}You haven't uploaded any media in this collection. Why not <a href="{{ wagtailimages_add_image_url }}">upload one now</a>?{% endblocktrans %}</p>
         {% else %}
-            <p>{% blocktrans %}You haven't uploaded any images. Why not <a href="{{ wagtailimages_add_image_url }}">upload one now</a>?{% endblocktrans %}</p>
+            <p>{% blocktrans %}You haven't uploaded any media. Why not <a href="{{ wagtailimages_add_image_url }}">upload one now</a>?{% endblocktrans %}</p>
         {% endif %}
     {% endif %}
 {% endif %}
