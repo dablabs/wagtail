@@ -130,3 +130,9 @@ class WagtailImageField(ImageField):
         if extension == 'mp4':
             return
         super().run_validators(value)
+
+    def widget_attrs(self, widget):
+        # Add the video/* mime-type to the file input widget
+        attrs = super().widget_attrs(widget)
+        attrs['accept'] = 'image/*, video/*'
+        return attrs
