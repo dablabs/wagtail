@@ -155,7 +155,7 @@ class ImagesSearchArea(SearchArea):
 @hooks.register('register_admin_search_area')
 def register_images_search_area():
     return ImagesSearchArea(
-        _('Images'), reverse('wagtailimages:index'),
+        _('Media'), reverse('wagtailimages:index'),
         name='images',
         classnames='icon icon-image',
         order=200)
